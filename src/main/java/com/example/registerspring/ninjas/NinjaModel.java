@@ -1,17 +1,24 @@
-package com.example.registerspring;
+package com.example.registerspring.ninjas;
 
+import com.example.registerspring.mission.NinjaMission;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_register")
 public class NinjaModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private int age;
+
+    // Many ninjas has one mission
+    @ManyToOne
+    @JoinColumn(name = "mission_id")
+    private NinjaMission mission;
 
     public NinjaModel() {
     }
