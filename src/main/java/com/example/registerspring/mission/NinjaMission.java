@@ -15,15 +15,16 @@ public class NinjaMission {
     private NinjaMissionDifficulty difficulty;
 
     // One mission has many ninjas
-    @OneToMany(mappedBy = "mission")
+    @OneToMany(mappedBy = "mission") //Created Foreign Key
     private List<NinjaModel> ninja;
 
     public NinjaMission() {
     }
 
-    public NinjaMission(String description, NinjaMissionDifficulty difficulty) {
+    public NinjaMission(String description, NinjaMissionDifficulty difficulty, List<NinjaModel> ninja) {
         this.description = description;
         this.difficulty = difficulty;
+        this.ninja = ninja;
     }
 
     public Long getId() {

@@ -8,25 +8,31 @@ import java.util.List;
 @Entity
 @Table(name = "tb_register")
 public class NinjaModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @Column(unique = true)
     private String email;
+
     private int age;
 
-    // Many ninjas has one mission
+    // Many ninjas have one mission
     @ManyToOne
-    @JoinColumn(name = "mission_id")
+    @JoinColumn(name = "mission_id") // Added Table of Foreign Key
     private NinjaMission mission;
 
     public NinjaModel() {
     }
 
-    public NinjaModel(String name, String email, int age) {
+    public NinjaModel(String name, String email, int age, NinjaMission mission) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.mission = mission;
     }
 
     public String getName() {
