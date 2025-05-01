@@ -1,6 +1,6 @@
 package com.example.registerspring.mission;
 
-public enum NinjaMissionDifficulty {
+public enum MissionDifficulty {
     RANK_E,
     RANK_D,
     RANK_C,

@@ -1,9 +1,7 @@
 package com.example.registerspring.ninjas;
 
-import com.example.registerspring.mission.NinjaMission;
+import com.example.registerspring.mission.MissionModel;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "tb_register")
@@ -23,12 +21,12 @@ public class NinjaModel {
     // Many ninjas have one mission
     @ManyToOne
     @JoinColumn(name = "mission_id") // Added Table of Foreign Key
-    private NinjaMission mission;
+    private MissionModel mission;
 
     public NinjaModel() {
     }
 
-    public NinjaModel(String name, String email, int age, NinjaMission mission) {
+    public NinjaModel(String name, String email, int age, MissionModel mission) {
         this.name = name;
         this.email = email;
         this.age = age;

@@ -7,21 +7,24 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_missions")
-public class NinjaMission {
+public class MissionModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String description;
-    private NinjaMissionDifficulty difficulty;
+
+    private MissionDifficulty difficulty;
 
     // One mission has many ninjas
     @OneToMany(mappedBy = "mission") //Created Foreign Key
     private List<NinjaModel> ninja;
 
-    public NinjaMission() {
+    public MissionModel() {
     }
 
-    public NinjaMission(String description, NinjaMissionDifficulty difficulty, List<NinjaModel> ninja) {
+    public MissionModel(String description, MissionDifficulty difficulty, List<NinjaModel> ninja) {
         this.description = description;
         this.difficulty = difficulty;
         this.ninja = ninja;
@@ -39,11 +42,11 @@ public class NinjaMission {
         this.description = description;
     }
 
-    public NinjaMissionDifficulty getDifficulty() {
+    public MissionDifficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(NinjaMissionDifficulty missionDifficulty) {
+    public void setDifficulty(MissionDifficulty missionDifficulty) {
         this.difficulty = missionDifficulty;
     }
 }
