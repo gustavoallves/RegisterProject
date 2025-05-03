@@ -15,7 +15,7 @@ public class MissionModel {
 
     private String description;
 
-    private MissionDifficulty difficulty;
+    private String difficulty;
 
     // One mission has many ninjas
     @OneToMany(mappedBy = "mission") //Created Foreign Key
@@ -24,7 +24,7 @@ public class MissionModel {
     public MissionModel() {
     }
 
-    public MissionModel(String description, MissionDifficulty difficulty, List<NinjaModel> ninja) {
+    public MissionModel(String description, String difficulty, List<NinjaModel> ninja) {
         this.description = description;
         this.difficulty = difficulty;
         this.ninja = ninja;
@@ -42,11 +42,11 @@ public class MissionModel {
         this.description = description;
     }
 
-    public MissionDifficulty getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(MissionDifficulty missionDifficulty) {
+    public void setDifficulty(String missionDifficulty) {
         this.difficulty = missionDifficulty;
     }
 }
