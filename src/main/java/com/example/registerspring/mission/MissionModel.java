@@ -1,6 +1,7 @@
 package com.example.registerspring.mission;
 
 import com.example.registerspring.ninjas.NinjaModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class MissionModel {
 
     // One mission has many ninjas
     @OneToMany(mappedBy = "mission") //Created Foreign Key
+    @JsonIgnore
     private List<NinjaModel> ninja;
 
     public MissionModel() {
@@ -48,5 +50,13 @@ public class MissionModel {
 
     public void setDifficulty(String missionDifficulty) {
         this.difficulty = missionDifficulty;
+    }
+
+    public List<NinjaModel> getNinja() {
+        return ninja;
+    }
+
+    public void setNinja(List<NinjaModel> ninja) {
+        this.ninja = ninja;
     }
 }
