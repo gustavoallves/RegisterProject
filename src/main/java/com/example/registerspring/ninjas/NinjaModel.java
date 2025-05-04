@@ -33,6 +33,10 @@ public class NinjaModel {
         this.mission = mission;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -56,4 +60,13 @@ public class NinjaModel {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public MissionModel getMission() {
+        return mission;
+    }
+
+    public void setMission(MissionModel mission) {
+        this.mission = mission;
+    }
+
 }
