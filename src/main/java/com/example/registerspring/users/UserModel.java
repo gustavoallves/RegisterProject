@@ -1,11 +1,11 @@
-package com.example.registerspring.ninjas;
+package com.example.registerspring.users;
 
-import com.example.registerspring.mission.MissionModel;
+import com.example.registerspring.department.DepartmentModel;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_register")
-public class NinjaModel {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,19 +18,19 @@ public class NinjaModel {
 
     private int age;
 
-    // Many ninjas have one mission
+    // Many users have one department
     @ManyToOne
-    @JoinColumn(name = "mission_id") // Added Table of Foreign Key
-    private MissionModel mission;
+    @JoinColumn(name = "department_id") // Added Table of Foreign Key
+    private DepartmentModel department;
 
-    public NinjaModel() {
+    public UserModel() {
     }
 
-    public NinjaModel(String name, String email, int age, MissionModel mission) {
+    public UserModel(String name, String email, int age, DepartmentModel department) {
         this.name = name;
         this.email = email;
         this.age = age;
-        this.mission = mission;
+        this.department = department;
     }
 
     public Long getId() {
@@ -61,12 +61,12 @@ public class NinjaModel {
         this.age = age;
     }
 
-    public MissionModel getMission() {
-        return mission;
+    public DepartmentModel getDepartment() {
+        return department;
     }
 
-    public void setMission(MissionModel mission) {
-        this.mission = mission;
+    public void setDepartment(DepartmentModel department) {
+        this.department = department;
     }
 
 }
