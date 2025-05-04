@@ -19,9 +19,9 @@ public class NinjaController {
         return "Welcome page";
     }
 
-    @PostMapping("/add")
-    public String createNinja() {
-        return "Ninja Created";
+    @PostMapping("/create")
+    public NinjaModel createNinja(@RequestBody NinjaModel ninja) {
+        return ninjaService.createNinja(ninja);
     }
 
     @GetMapping("/all")
