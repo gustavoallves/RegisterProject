@@ -2,9 +2,17 @@ package com.example.registerspring.ninjas;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("ninja")
 public class NinjaController {
+
+    private NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @GetMapping("/welcome")
     public String welcome() {
@@ -17,8 +25,8 @@ public class NinjaController {
     }
 
     @GetMapping("/all")
-    public String showAllNinja() {
-        return "All Ninjas";
+    public List<NinjaModel> showAllNinja() {
+        return ninjaService.listNinjas();
     }
 
     @GetMapping("/allById")
