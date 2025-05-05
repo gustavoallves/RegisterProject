@@ -29,7 +29,7 @@ public class UserController {
         return userService.listUser();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/find/{id}")
     public UserModel findById(@PathVariable Long id) {
         return userService.findById(id);
     }
