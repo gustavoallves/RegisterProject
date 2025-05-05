@@ -2,20 +2,34 @@ package com.example.registerspring.department;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("department")
 public class DepartmentController {
 
-//  GET -- Mandar requisicao para EXIBIR
+    public DepartmentService departmentService;
+
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    //  GET -- Mandar requisicao para ENCONTRAR
+    @GetMapping("/find/{id}")
+    public DepartmentModel createDepartment(@PathVariable Long id){
+        return departmentService.findById(id);
+    }
+
+    //  GET -- Mandar requisicao para EXIBIR
     @GetMapping("/all")
-    public String allDepartment(){
-        return "All departments";
+    public List<DepartmentModel> showAllDepartment(){
+        return departmentService.listDepartment();
     }
 
 //  POST -- Mandar requisicao para CRIAR
     @PostMapping("/add")
-    public String createDepartment(){
-        return "Department created";
+    public DepartmentModel createDepartment(@RequestBody DepartmentModel departmentModel){
+        return departmentService.createDepartment(departmentModel);
     }
 
 //  PUT -- Mandar requisicao para ALTERAR
@@ -25,9 +39,9 @@ public class DepartmentController {
     }
 
 //  DELETE -- Mandar requisicao para DELETAR
-    @DeleteMapping("/delete")
-    public String deleteDepartment(){
-        return "Department deleted";
+    @DeleteMapping("/delete/{id}")
+    public void deleteDepartment(@PathVariable Long id){
+        departmentService.deleteDepartment(id);
     }
 
 }
