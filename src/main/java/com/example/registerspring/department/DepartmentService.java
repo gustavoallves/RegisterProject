@@ -1,5 +1,6 @@
 package com.example.registerspring.department;
 
+import com.example.registerspring.users.UserModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,14 @@ public class DepartmentService {
 
     public DepartmentModel createDepartment(DepartmentModel departmentModel) {
         return departmentRepository.save(departmentModel);
+    }
+
+    public DepartmentModel editDepartment (Long id, DepartmentModel departmentEdited){
+        if (departmentRepository.existsById(id)){
+            departmentEdited.setId(id);
+            return departmentRepository.save(departmentEdited);
+        }
+        return null;
     }
 
     public void deleteDepartment(Long id) {

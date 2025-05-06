@@ -33,9 +33,9 @@ public class DepartmentController {
     }
 
 //  PUT -- Mandar requisicao para ALTERAR
-    @PutMapping("/edit")
-    public String editDepartment(){
-        return "Department edited";
+    @PutMapping("/edit/{id}")
+    public DepartmentModel editDepartment(@PathVariable Long id, @RequestBody DepartmentModel departmentModel){
+        return departmentService.editDepartment(id, departmentModel);
     }
 
 //  DELETE -- Mandar requisicao para DELETAR
