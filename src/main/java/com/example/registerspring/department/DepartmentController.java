@@ -28,8 +28,8 @@ public class DepartmentController {
 
 //  POST -- Mandar requisicao para CRIAR
     @PostMapping("/add")
-    public DepartmentModel createDepartment(@RequestBody DepartmentModel departmentModel){
-        return departmentService.createDepartment(departmentModel);
+    public DepartmentDTO createDepartment(@RequestBody DepartmentDTO departmentDTO){
+        return departmentService.createDepartment(departmentDTO);
     }
 
 //  PUT -- Mandar requisicao para ALTERAR

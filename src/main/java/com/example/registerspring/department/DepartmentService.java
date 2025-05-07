@@ -1,6 +1,5 @@
 package com.example.registerspring.department;
 
-import com.example.registerspring.users.UserModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +9,11 @@ import java.util.Optional;
 public class DepartmentService {
 
     private DepartmentRepository departmentRepository;
+    private DepartmentMapper departmentMapper;
 
-    public DepartmentService(DepartmentRepository departmentRepository) {
+    public DepartmentService(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
         this.departmentRepository = departmentRepository;
+        this.departmentMapper = departmentMapper;
     }
 
     public List<DepartmentModel> listDepartment() {
@@ -24,12 +25,14 @@ public class DepartmentService {
         return departmentById.orElse(null);
     }
 
-    public DepartmentModel createDepartment(DepartmentModel departmentModel) {
-        return departmentRepository.save(departmentModel);
+    public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
+        DepartmentModel departmentModel = departmentMapper.map(departmentDTO);
+        departmentModel = departmentRepository.save(departmentModel);
+        return departmentMapper.map(departmentModel);
     }
 
-    public DepartmentModel editDepartment (Long id, DepartmentModel departmentEdited){
-        if (departmentRepository.existsById(id)){
+    public DepartmentModel editDepartment(Long id, DepartmentModel departmentEdited) {
+        if (departmentRepository.existsById(id)) {
             departmentEdited.setId(id);
             return departmentRepository.save(departmentEdited);
         }
