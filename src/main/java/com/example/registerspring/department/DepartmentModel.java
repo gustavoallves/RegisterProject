@@ -12,14 +12,11 @@ public class DepartmentModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-
     private String name;
-
     private String category;
-
-    // One department has many users
-    @OneToMany(mappedBy = "department") //Created Foreign Key
+    @OneToMany(mappedBy = "department")
     @JsonIgnore
     private List<UserModel> users;
 
