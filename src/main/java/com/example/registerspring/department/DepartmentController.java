@@ -16,13 +16,13 @@ public class DepartmentController {
 
     //  GET -- Mandar requisicao para ENCONTRAR
     @GetMapping("/find/{id}")
-    public DepartmentModel createDepartment(@PathVariable Long id){
+    public DepartmentDTO createDepartment(@PathVariable Long id){
         return departmentService.findById(id);
     }
 
     //  GET -- Mandar requisicao para EXIBIR
     @GetMapping("/all")
-    public List<DepartmentModel> showAllDepartment(){
+    public List<DepartmentDTO> showAllDepartment(){
         return departmentService.listDepartment();
     }
 
@@ -34,8 +34,8 @@ public class DepartmentController {
 
 //  PUT -- Mandar requisicao para ALTERAR
     @PutMapping("/edit/{id}")
-    public DepartmentModel editDepartment(@PathVariable Long id, @RequestBody DepartmentModel departmentModel){
-        return departmentService.editDepartment(id, departmentModel);
+    public DepartmentDTO editDepartment(@PathVariable Long id, @RequestBody DepartmentDTO departmentDTO){
+        return departmentService.editDepartment(id, departmentDTO);
     }
 
 //  DELETE -- Mandar requisicao para DELETAR

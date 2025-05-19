@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentService {
@@ -16,13 +17,16 @@ public class DepartmentService {
         this.departmentMapper = departmentMapper;
     }
 
-    public List<DepartmentModel> listDepartment() {
-        return departmentRepository.findAll();
+    public List<DepartmentDTO> listDepartment() {
+        List<DepartmentModel> department = departmentRepository.findAll();
+        return department.stream()
+                .map(departmentMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public DepartmentModel findById(Long id) {
+    public DepartmentDTO findById(Long id) {
         Optional<DepartmentModel> departmentById = departmentRepository.findById(id);
-        return departmentById.orElse(null);
+        return departmentById.map(departmentMapper::map).orElse(null);
     }
 
     public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
@@ -31,10 +35,13 @@ public class DepartmentService {
         return departmentMapper.map(departmentModel);
     }
 
-    public DepartmentModel editDepartment(Long id, DepartmentModel departmentEdited) {
-        if (departmentRepository.existsById(id)) {
+    public DepartmentDTO editDepartment(Long id, DepartmentDTO departmentDTO) {
+        Optional<DepartmentModel> departmentExist = departmentRepository.findById(id);
+        if (departmentExist.isPresent()) {
+            DepartmentModel departmentEdited = departmentMapper.map(departmentDTO);
             departmentEdited.setId(id);
-            return departmentRepository.save(departmentEdited);
+            DepartmentModel departmentSave = departmentRepository.save(departmentEdited);
+            return departmentMapper.map(departmentSave);
         }
         return null;
     }

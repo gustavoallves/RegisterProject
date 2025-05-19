@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 public class DepartmentMapper {
 
     public DepartmentModel map(DepartmentDTO departmentDTO) {
-        DepartmentModel departmentModel = new DepartmentModel();
 
+        DepartmentModel departmentModel = new DepartmentModel();
         departmentModel.setId(departmentDTO.getId());
         departmentModel.setName(departmentDTO.getName());
         departmentModel.setCategory(departmentDTO.getCategory());
@@ -17,8 +17,8 @@ public class DepartmentMapper {
     }
 
     public DepartmentDTO map(DepartmentModel departmentModel) {
-        DepartmentDTO departmentDTO = new DepartmentDTO();
 
+        DepartmentDTO departmentDTO = new DepartmentDTO();
         departmentDTO.setId(departmentModel.getId());
         departmentDTO.setName(departmentModel.getName());
         departmentDTO.setCategory(departmentModel.getCategory());

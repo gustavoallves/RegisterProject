@@ -1,8 +1,6 @@
 package com.example.registerspring.department;
 
 import com.example.registerspring.users.UserModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.OneToMany;
 import java.util.List;
 
 public class DepartmentDTO {
