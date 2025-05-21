@@ -8,7 +8,7 @@ Sistema de cadastro de usuários e departamentos, desenvolvido com Java e Spring
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- Banco de Dados Relacional (ex: H2, MySQL ou PostgreSQL)
+- Banco de Dados Relacional (H2)
 - Maven
 - Postman (para testes)
 - JSON
