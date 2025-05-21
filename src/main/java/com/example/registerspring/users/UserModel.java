@@ -10,17 +10,12 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     @Column(unique = true)
     private String email;
-
     private int age;
-
-    // Many users have one department
     @ManyToOne
-    @JoinColumn(name = "department_id") // Added Table of Foreign Key
+    @JoinColumn(name = "department_id")
     private DepartmentModel department;
 
     public UserModel() {
@@ -35,6 +30,10 @@ public class UserModel {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
