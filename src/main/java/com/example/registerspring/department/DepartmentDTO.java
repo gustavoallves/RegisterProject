@@ -1,13 +1,14 @@
 package com.example.registerspring.department;
 
 import com.example.registerspring.users.UserModel;
+
 import java.util.List;
 
 public class DepartmentDTO {
-        private Long id;
-        private String name;
-        private String category;
-        private List<UserModel> users;
+    private Long id;
+    private String name;
+    private String category;
+    private List<UserModel> users;
 
     public DepartmentDTO() {
     }
@@ -38,8 +39,8 @@ public class DepartmentDTO {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(String departmentCategory) {
+        this.category = departmentCategory;
     }
 
     public List<UserModel> getUsers() {
