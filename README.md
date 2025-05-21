@@ -1,6 +1,6 @@
 # Register Project
 
-Sistema de cadastro de usuários e departamentos, desenvolvido com Java e Spring Boot. Permite criar, listar, buscar, editar e deletar registros de usuários e departamentos.
+API de cadastro de usuários e departamentos, desenvolvido com Java e Spring Boot. Permite criar, listar, buscar, editar e deletar registros de usuários e departamentos.
 
 ## 🔧 Tecnologias Utilizadas
 
