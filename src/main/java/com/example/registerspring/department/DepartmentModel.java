@@ -22,12 +22,6 @@ public class DepartmentModel {
     public DepartmentModel() {
     }
 
-    public DepartmentModel(String name, String category, List<UserModel> user) {
-        this.name = name;
-        this.category = category;
-        this.users = user;
-    }
-
     public Long getId() {
         return id;
     }

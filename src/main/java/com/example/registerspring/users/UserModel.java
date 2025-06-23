@@ -21,13 +21,6 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(String name, String email, int age, DepartmentModel department) {
-        this.name = name;
-        this.email = email;
-        this.age = age;
-        this.department = department;
-    }
-
     public Long getId() {
         return id;
     }

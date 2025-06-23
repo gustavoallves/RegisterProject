@@ -13,12 +13,6 @@ public class DepartmentDTO {
     public DepartmentDTO() {
     }
 
-    public DepartmentDTO(String name, String category, List<UserModel> users) {
-        this.name = name;
-        this.category = category;
-        this.users = users;
-    }
-
     public Long getId() {
         return id;
     }
