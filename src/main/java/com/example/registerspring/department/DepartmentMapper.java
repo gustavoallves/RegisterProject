@@ -1,31 +1,14 @@
 package com.example.registerspring.department;
 
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class DepartmentMapper {
+import java.util.List;
 
-    public DepartmentModel map(DepartmentDTO departmentDTO) {
+@Mapper(componentModel = "spring")
+public interface DepartmentMapper {
+    DepartmentModel toModel(DepartmentRequestDTO departmentRequestDTO);
 
-        DepartmentModel departmentModel = new DepartmentModel();
-        departmentModel.setId(departmentDTO.getId());
-        departmentModel.setName(departmentDTO.getName());
-        departmentModel.setCategory(departmentDTO.getCategory());
-        departmentModel.setUsers(departmentDTO.getUsers());
+    DepartmentResponseDTO toResponseDto(DepartmentModel departmentModel);
 
-        return departmentModel;
-    }
-
-    public DepartmentDTO map(DepartmentModel departmentModel) {
-
-        DepartmentDTO departmentDTO = new DepartmentDTO();
-        departmentDTO.setId(departmentModel.getId());
-        departmentDTO.setName(departmentModel.getName());
-        departmentDTO.setCategory(departmentModel.getCategory());
-        departmentDTO.setUsers(departmentModel.getUsers());
-
-        return departmentDTO;
-    }
-
-
+    List<DepartmentResponseDTO> toResponseList(List<DepartmentModel> departmentModels);
 }
