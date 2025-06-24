@@ -1,49 +1,45 @@
 package com.example.registerspring.department;
 
+import com.example.registerspring.common.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class DepartmentService {
 
-    private DepartmentRepository departmentRepository;
     private DepartmentMapper departmentMapper;
+    private DepartmentRepository departmentRepository;
 
     public DepartmentService(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
         this.departmentRepository = departmentRepository;
         this.departmentMapper = departmentMapper;
     }
 
-    public List<DepartmentDTO> listDepartment() {
-        List<DepartmentModel> department = departmentRepository.findAll();
-        return department.stream()
-                .map(departmentMapper::map)
-                .collect(Collectors.toList());
+    public DepartmentResponseDTO createDepartment(DepartmentRequestDTO departmentRequestDTO) {
+        DepartmentModel departmentToSave = departmentMapper.toModel(departmentRequestDTO);
+        DepartmentModel departmentSaved = departmentRepository.save(departmentToSave);
+        return departmentMapper.toResponseDto(departmentSaved);
     }
 
-    public DepartmentDTO findById(Long id) {
-        Optional<DepartmentModel> departmentById = departmentRepository.findById(id);
-        return departmentById.map(departmentMapper::map).orElse(null);
+    public List<DepartmentResponseDTO> listAllDepartment() {
+        List<DepartmentModel> departments = departmentRepository.findAll();
+        return departmentMapper.toResponseList(departments);
     }
 
-    public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
-        DepartmentModel departmentModel = departmentMapper.map(departmentDTO);
-        departmentModel = departmentRepository.save(departmentModel);
-        return departmentMapper.map(departmentModel);
+    public DepartmentResponseDTO findById(Long id) {
+        DepartmentModel departmentModel = departmentRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Department with id " + id + " not found."));
+        return departmentMapper.toResponseDto(departmentModel);
     }
 
-    public DepartmentDTO editDepartment(Long id, DepartmentDTO departmentDTO) {
-        Optional<DepartmentModel> departmentExist = departmentRepository.findById(id);
-        if (departmentExist.isPresent()) {
-            DepartmentModel departmentEdited = departmentMapper.map(departmentDTO);
-            departmentEdited.setId(id);
-            DepartmentModel departmentSave = departmentRepository.save(departmentEdited);
-            return departmentMapper.map(departmentSave);
-        }
-        return null;
+    public DepartmentResponseDTO editDepartment(Long id, DepartmentRequestDTO departmentRequestDTO) {
+        departmentRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Department with id " + id + " not found."));
+        DepartmentModel departmentToEdit = departmentMapper.toModel(departmentRequestDTO);
+        departmentToEdit.setId(id);
+        DepartmentModel departmentEdited = departmentRepository.save(departmentToEdit);
+        return departmentMapper.toResponseDto(departmentEdited);
     }
 
     public void deleteDepartment(Long id) {
