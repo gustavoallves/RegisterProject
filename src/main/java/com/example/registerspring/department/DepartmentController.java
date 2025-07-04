@@ -23,13 +23,13 @@ public class DepartmentController {
 
     @PostMapping()
     public ResponseEntity<DepartmentResponseDTO> createDepartment(@Valid @RequestBody DepartmentRequestDTO departmentRequestDTO) {
-        DepartmentResponseDTO departmentNew = departmentService.createDepartment(departmentRequestDTO);
+        DepartmentResponseDTO departmentResponseDTO = departmentService.createDepartment(departmentRequestDTO);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(departmentNew.id())
+                .buildAndExpand(departmentResponseDTO.id())
                 .toUri();
-        return ResponseEntity.created(location).body(departmentNew);
+        return ResponseEntity.created(location).body(departmentResponseDTO);
     }
 
     @GetMapping()

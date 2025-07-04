@@ -34,8 +34,6 @@ public class DepartmentService {
     }
 
     public DepartmentResponseDTO editDepartment(Long id, DepartmentRequestDTO departmentRequestDTO) {
-        departmentRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Department with id " + id + " not found."));
         DepartmentModel departmentToEdit = departmentMapper.toModel(departmentRequestDTO);
         departmentToEdit.setId(id);
         DepartmentModel departmentEdited = departmentRepository.save(departmentToEdit);
