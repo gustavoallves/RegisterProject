@@ -1,6 +1,7 @@
 package com.example.registerspring.users;
 
 import com.example.registerspring.department.DepartmentResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserResponseDTO {
@@ -10,6 +11,7 @@ public class UserResponseDTO {
     private String email;
     private int age;
     @JsonProperty("department")
+    @JsonIgnoreProperties("users")
     private DepartmentResponseDTO departmentResponseDTO;
 
     public UserResponseDTO() {
