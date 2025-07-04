@@ -1,7 +1,7 @@
 package com.example.registerspring.users;
 
 
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 
 public record UserRequestDTO(
@@ -14,7 +14,7 @@ public record UserRequestDTO(
         @NotNull(message = "User age cannot be null.")
         int age,
         @NotNull(message = "Department id cannot be null.")
-        @JsonGetter("department_id")
+        @JsonProperty("department")
         Long departmentId
 ) {
 }

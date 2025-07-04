@@ -1,11 +1,16 @@
 package com.example.registerspring.users;
 
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("users")
 public class UserController {
 
     private UserService userService;
@@ -14,32 +19,41 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/welcome")
-    public String welcome() {
-        return "Welcome page";
+    @PostMapping()
+    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
+        UserResponseDTO userResponseDTO = userService.createUser(userRequestDTO);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(userResponseDTO.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(userResponseDTO);
     }
 
-    @PostMapping("/add")
-    public UserModel createUser(@RequestBody UserModel user) {
-        return userService.createUser(user);
+    @GetMapping()
+    public ResponseEntity<List<UserResponseDTO>> listAllUser() {
+        return ResponseEntity.ok(userService.listAllUser());
     }
 
-    @GetMapping("/all")
-    public List<UserModel> showAllUser() {
-        return userService.listUser();
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
+        UserResponseDTO userResponseDTO = userService.findById(id);
+        return ResponseEntity.ok(userResponseDTO);
     }
 
-    @GetMapping("/find/{id}")
-    public UserModel findById(@PathVariable Long id) {
-        return userService.findById(id);
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> editUser(@PathVariable Long id, @Valid @RequestBody UserRequestDTO userRequestDTO) {
+        userService.findById(id);
+        UserResponseDTO userResponseDTO = userService.editUser(id, userRequestDTO);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(userResponseDTO.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(userResponseDTO);
     }
 
-    @PutMapping("/edit")
-    public String editUser() {
-        return "User edited";
-    }
-
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
