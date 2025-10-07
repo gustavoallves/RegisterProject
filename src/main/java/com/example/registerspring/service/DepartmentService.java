@@ -1,6 +1,11 @@
-package com.example.registerspring.department;
+package com.example.registerspring.service;
 
 import com.example.registerspring.common.exception.NotFoundException;
+import com.example.registerspring.dto.DepartmentRequestDTO;
+import com.example.registerspring.dto.DepartmentResponseDTO;
+import com.example.registerspring.entity.DepartmentModel;
+import com.example.registerspring.mapper.DepartmentMapper;
+import com.example.registerspring.repository.DepartmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

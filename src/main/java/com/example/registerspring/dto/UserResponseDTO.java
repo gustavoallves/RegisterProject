@@ -1,24 +1,19 @@
-package com.example.registerspring.users;
+package com.example.registerspring.dto;
 
-import com.example.registerspring.department.DepartmentModel;
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name = "tb_register")
-public class UserModel {
+public class UserResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(unique = true)
     private String email;
     private int age;
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private DepartmentModel department;
+    @JsonProperty("department")
+    @JsonIgnoreProperties("users")
+    private DepartmentResponseDTO departmentResponseDTO;
 
-    public UserModel() {
+    public UserResponseDTO() {
     }
 
     public Long getId() {
@@ -53,12 +48,11 @@ public class UserModel {
         this.age = age;
     }
 
-    public DepartmentModel getDepartment() {
-        return department;
+    public DepartmentResponseDTO getDepartmentResponseDTO() {
+        return departmentResponseDTO;
     }
 
-    public void setDepartment(DepartmentModel department) {
-        this.department = department;
+    public void setDepartmentResponseDTO(DepartmentResponseDTO departmentResponseDTO) {
+        this.departmentResponseDTO = departmentResponseDTO;
     }
-
 }

@@ -1,6 +1,5 @@
-package com.example.registerspring.department;
+package com.example.registerspring.entity;
 
-import com.example.registerspring.users.UserModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

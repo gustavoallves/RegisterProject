@@ -1,6 +1,4 @@
-package com.example.registerspring.department;
-
-import com.example.registerspring.users.UserResponseDTO;
+package com.example.registerspring.dto;
 
 import java.util.List;
 

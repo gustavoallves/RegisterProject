@@ -1,4 +1,4 @@
-package com.example.registerspring.department;
+package com.example.registerspring.dto;
 
 public record DepartmentRequestDTO(
         String name,

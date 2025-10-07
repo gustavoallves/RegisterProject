@@ -1,4 +1,4 @@
-package com.example.registerspring.users;
+package com.example.registerspring.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

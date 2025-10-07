@@ -1,7 +1,10 @@
-package com.example.registerspring.department;
+package com.example.registerspring.controller;
 
+import com.example.registerspring.dto.DepartmentRequestDTO;
+import com.example.registerspring.dto.DepartmentResponseDTO;
+import com.example.registerspring.mapper.DepartmentMapper;
+import com.example.registerspring.service.DepartmentService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

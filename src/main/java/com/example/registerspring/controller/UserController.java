@@ -1,5 +1,8 @@
-package com.example.registerspring.users;
+package com.example.registerspring.controller;
 
+import com.example.registerspring.dto.UserRequestDTO;
+import com.example.registerspring.dto.UserResponseDTO;
+import com.example.registerspring.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,7 +10,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("users")
