@@ -14,6 +14,7 @@ public class DepartmentModel {
     private Long id;
     private String name;
     private String category;
+
     @OneToMany(mappedBy = "department")
     @JsonIgnore
     private List<UserModel> users;

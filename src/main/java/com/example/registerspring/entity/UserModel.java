@@ -13,6 +13,7 @@ public class UserModel {
     @Column(unique = true)
     private String email;
     private int age;
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     private DepartmentModel department;

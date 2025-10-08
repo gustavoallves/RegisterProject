@@ -2,7 +2,6 @@ package com.example.registerspring.controller;
 
 import com.example.registerspring.dto.DepartmentRequestDTO;
 import com.example.registerspring.dto.DepartmentResponseDTO;
-import com.example.registerspring.mapper.DepartmentMapper;
 import com.example.registerspring.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +15,10 @@ import java.util.List;
 @RequestMapping("departments")
 public class DepartmentController {
 
-    private final DepartmentMapper departmentMapper;
     public DepartmentService departmentService;
 
-    public DepartmentController(DepartmentService departmentService, DepartmentMapper departmentMapper) {
+    public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
-        this.departmentMapper = departmentMapper;
     }
 
     @PostMapping()
@@ -62,5 +59,4 @@ public class DepartmentController {
         departmentService.deleteDepartment(id);
         return ResponseEntity.ok("Department " + id + " deleted.");
     }
-
 }

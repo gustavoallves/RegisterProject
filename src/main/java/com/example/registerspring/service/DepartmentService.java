@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class DepartmentService {
 
-    private DepartmentMapper departmentMapper;
-    private DepartmentRepository departmentRepository;
+    private final DepartmentMapper departmentMapper;
+    private final DepartmentRepository departmentRepository;
 
     public DepartmentService(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
         this.departmentRepository = departmentRepository;
